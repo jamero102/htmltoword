@@ -4,10 +4,10 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'htmltoword/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "janie-htmltoword"
+  spec.name          = "htmltoword"
   spec.version       = Htmltoword::VERSION
   spec.authors       = ["Nicholas Frandsen, Cristina Matonte"]
-  spec.email         = ["janie.amero@gmail.com, nick.rowe.frandsen@gmail.com, anitsirc1@gmail.com"]
+  spec.email         = ["nick.rowe.frandsen@gmail.com, anitsirc1@gmail.com"]
   spec.description   = %q{Convert html to word docx document.}
   spec.summary       = %q{This simple gem allows you to create MS Word docx documents from simple html documents. This makes it easy to create dynamic reports and forms that can be downloaded by your users as simple MS Word docx files.}
   spec.homepage      = "http://github.com/jamero102/htmltoword"
