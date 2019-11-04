@@ -1,3 +1,4 @@
+
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
                 xmlns:o="urn:schemas-microsoft-com:office:office"
@@ -15,8 +16,19 @@
                 version="1.0"
                 exclude-result-prefixes="java msxsl ext w o v WX aml w10"
                 extension-element-prefixes="func">
-  <xsl:import href="./base.xslt"/>
-  <!--Extra templates and customizations-->
-  <xsl:include href="./extras.xslt"/>
-  <xsl:include href="./header.xslt"/>
+
+  <!-- use block quotes for spacing (can be nested) -->
+  <xsl:template match="header">
+    <w:style w:type="paragraph" w:styleId="Header" >
+      <w:name w:val="header"/>
+      <w:basedOn w:val="Normal"/>
+      <w:pPr>
+          <w:pStyle w:val="Header"/>
+          <w:tabs>
+            <w:tab w:val="center" w:pos="4320"/>
+            <w:tab w:val="right" w:pos="8640"/>
+          </w:tabs>
+      </w:pPr>
+    </w:style>
+  </xsl:template>
 </xsl:stylesheet>
