@@ -18,5 +18,4 @@
   <xsl:import href="./base.xslt"/>
   <!--Extra templates and customizations-->
   <xsl:include href="./extras.xslt"/>
-  <xsl:include href="./header.xslt"/>
 </xsl:stylesheet>

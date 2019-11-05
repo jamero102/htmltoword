@@ -45,7 +45,7 @@
     <w:p>
       <xsl:call-template name="text-alignment" />
       <w:r>
-        <w:t xml:space="preserve"><xsl:value-of select="."/></w:t>
+        <w:t><xsl:value-of select="."/></w:t>
       </w:r>
     </w:p>
   </xsl:template>
@@ -77,7 +77,7 @@
     </w:p>
   </xsl:template>
 
-  <xsl:template match="div[not(ancestor::li) and not(ancestor::td) and not(ancestor::th) and not(ancestor::p) and not(ancestor::dl) and not(descendant::dl) and not(descendant::div) and not(descendant::p) and not(descendant::h1) and not(descendant::h2) and not(descendant::h3) and not(descendant::h4) and not(descendant::h5) and not(descendant::h6) and not(descendant::table) and not(descendant::li) and not (descendant::pre)]">
+  <xsl:template match="div[not(ancestor::li) and not(ancestor::td) and not(ancestor::th) and not(ancestor::p) and not(ancestor::dl) and not(descendant::dl) and not(descendant::div) and not(descendant::p) and not(descendant::h1) and not(descendant::h2) and not(descendant::h3) and not(descendant::h4) and not(descendant::h5) and not(descendant::h6) and not(descendant::table) and not(descendant::li) and not (descendant::pre) and not(descendant::header)]">
     <xsl:comment>Divs should create a p if nothing above them has and nothing below them will</xsl:comment>
     <w:p>
       <xsl:call-template name="text-alignment" />
@@ -97,7 +97,61 @@
         <w:pStyle w:val="Heading{substring(name(.),$length)}"/>
       </w:pPr>
       <w:r>
-        <w:t xml:space="preserve"><xsl:value-of select="."/></w:t>
+        <w:t><xsl:value-of select="."/></w:t>
+      </w:r>
+    </w:p>
+  </xsl:template>
+
+  <xsl:template match="header[1]/*[1]">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:t><xsl:value-of select="."/></w:t>
+      </w:r>
+    </w:p>
+  </xsl:template>
+
+  <xsl:template match="h4[parent::header]">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading5"></w:pStyle>
+      </w:pPr>
+      <w:r>
+        <w:t><xsl:value-of select="."/></w:t>
+      </w:r>
+    </w:p>
+  </xsl:template>
+
+  <xsl:template match="div[parent::header]">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading3"></w:pStyle>
+      </w:pPr>
+      <w:r>
+        <w:t><xsl:value-of select="."/></w:t>
+      </w:r>
+    </w:p>
+  </xsl:template>
+
+  <xsl:template match="header[(position()>2)]">  
+    <w:p>
+      <w:r>
+        <w:br w:type="page" />
+      </w:r>
+    </w:p>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="header[2]">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading3"></w:pStyle>
+      </w:pPr>
+      <w:r>
+        <w:br w:type="page" />
+        <w:t><xsl:value-of select="."/></w:t>
       </w:r>
     </w:p>
   </xsl:template>
@@ -249,7 +303,7 @@
       </xsl:comment>
     <w:p>
       <w:r>
-        <w:t xml:space="preserve"><xsl:value-of select="."/></w:t>
+        <w:t><xsl:value-of select="."/></w:t>
       </w:r>
     </w:p>
   </xsl:template>
@@ -273,7 +327,7 @@
             <w:rPr>
               <w:highlight w:val="{$color}"/>
             </w:rPr>
-            <w:t xml:space="preserve"><xsl:value-of select="."/></w:t>
+            <w:t><xsl:value-of select="."/></w:t>
           </w:r>
         </w:p>
       </xsl:when>
@@ -282,7 +336,7 @@
           <w:rPr>
             <w:highlight w:val="{$color}"/>
           </w:rPr>
-          <w:t xml:space="preserve"><xsl:value-of select="."/></w:t>
+          <w:t><xsl:value-of select="."/></w:t>
         </w:r>
       </xsl:otherwise>
     </xsl:choose>
@@ -332,7 +386,7 @@
             <w:vertAlign w:val="superscript"/>
           </w:rPr>
         </xsl:if>
-        <w:t xml:space="preserve"><xsl:value-of select="."/></w:t>
+        <w:t><xsl:value-of select="."/></w:t>
       </w:r>
     </xsl:if>
   </xsl:template>
